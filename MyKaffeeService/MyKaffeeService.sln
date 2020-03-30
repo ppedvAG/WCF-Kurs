@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyKaffeeService.Host", "MyKaffeeService.Host\MyKaffeeService.Host.csproj", "{7908384F-AEDD-4FF6-A211-AA9338DFFA74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyKaffeeService.Client", "MyKaffeeService.Client\MyKaffeeService.Client.csproj", "{04D103B1-C315-4B4E-AD88-B1CB9F87C7E9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7908384F-AEDD-4FF6-A211-AA9338DFFA74} = {7908384F-AEDD-4FF6-A211-AA9338DFFA74}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7908384F-AEDD-4FF6-A211-AA9338DFFA74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7908384F-AEDD-4FF6-A211-AA9338DFFA74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7908384F-AEDD-4FF6-A211-AA9338DFFA74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7908384F-AEDD-4FF6-A211-AA9338DFFA74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04D103B1-C315-4B4E-AD88-B1CB9F87C7E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04D103B1-C315-4B4E-AD88-B1CB9F87C7E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04D103B1-C315-4B4E-AD88-B1CB9F87C7E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04D103B1-C315-4B4E-AD88-B1CB9F87C7E9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5C34FDB0-C43E-443E-AFC6-977E651F0EEA}
+	EndGlobalSection
+EndGlobal

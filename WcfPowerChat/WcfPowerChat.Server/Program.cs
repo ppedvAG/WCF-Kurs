@@ -15,8 +15,10 @@ namespace WcfPowerChat.Server
             Console.WriteLine("*** WCF Power Chat Server ***");
 
             var host = new ServiceHost(typeof(PowerChat));
-            
+
             var tcpBind = new NetTcpBinding();
+            tcpBind.MaxReceivedMessageSize = int.MaxValue;
+
             host.AddServiceEndpoint(typeof(IServer), tcpBind, "net.tcp://localhost:1");
 
             host.Open();

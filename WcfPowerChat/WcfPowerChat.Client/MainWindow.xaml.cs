@@ -1,8 +1,12 @@
 ﻿using AdonisUI;
+using Microsoft.Win32;
 using System.Collections.Generic;
 using System.IO;
 using System.ServiceModel;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using WcfPowerChat.Contracts;
 
 namespace WcfPowerChat.Client
@@ -65,7 +69,20 @@ namespace WcfPowerChat.Client
 
         public void ShowImage(Stream image)
         {
-            throw new System.NotImplementedException();
+            this.Dispatcher.Invoke(() =>
+            {
+                var ms = new MemoryStream();
+                image.CopyTo(ms);
+                ms.Position = 0;
+
+                var img = new Image();
+                img.BeginInit();
+                img.Source = BitmapFrame.Create(ms, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+                img.Stretch = Stretch.None;
+                img.EndInit();
+
+                chatLb.Items.Insert(0, img);
+            });
         }
 
         public void ShowText(string text)
@@ -76,6 +93,7 @@ namespace WcfPowerChat.Client
         private void Login(object sender, RoutedEventArgs e)
         {
             var tcpBind = new NetTcpBinding();
+            tcpBind.MaxReceivedMessageSize = int.MaxValue;
 
             var cf = new DuplexChannelFactory<IServer>(new InstanceContext(this), tcpBind, new EndpointAddress("net.tcp://localhost:1"));
             server = cf.CreateChannel();
@@ -99,6 +117,19 @@ namespace WcfPowerChat.Client
         public void ShowUsers(IEnumerable<string> users)
         {
             userLb.Dispatcher.Invoke(() => userLb.ItemsSource = users);
+        }
+
+        private void SendImage(object sender, RoutedEventArgs e)
+        {
+            var dlg = new OpenFileDialog
+            {
+                Filter = "Bilder|*.png|Alles|*.*"
+            };
+
+            if (dlg.ShowDialog().Value)
+            {
+                server.SendImage(File.OpenRead(dlg.FileName));
+            }
         }
     }
 }

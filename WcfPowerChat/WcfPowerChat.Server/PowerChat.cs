@@ -47,7 +47,19 @@ namespace WcfPowerChat.Server
         public void SendImage(Stream image)
         {
             Console.WriteLine($"SendImage:");
+
+            var ms = new MemoryStream();
+            image.CopyTo(ms);
+
+            ExecuteForAllClient(x =>
+            {
+                ms.Position = 0;
+                x.ShowImage(ms);
+            });
+
         }
+
+
 
         public void SendText(string text)
         {

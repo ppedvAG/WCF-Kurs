@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WcfPowerChat.Client"
         xmlns:adonisControls="clr-namespace:AdonisUI.Controls;assembly=AdonisUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="600">
+        Title="WCF PowerChat v1.0 " Height="450" Width="600">
 
     <DockPanel>
 
@@ -36,7 +36,7 @@
             <Label VerticalContentAlignment="Center">Text</Label>
             <TextBox Name="chatTb" Grid.Column="1" VerticalContentAlignment="Center">Hallo</TextBox>
             <Button Name="sendBtn" Click="SendText" Grid.Column="2">Senden</Button>
-            <Button Name="sendImageBtn" Grid.Column="3">Bild...</Button>
+            <Button Click="SendImage" Name="sendImageBtn" Grid.Column="3">Bild...</Button>
             <Button Name="sendFileBtn" Grid.Column="4">Datei...</Button>
         </Grid>
 

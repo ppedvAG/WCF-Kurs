@@ -1,0 +1,49 @@
+﻿<adonisControls:AdonisWindow x:Class="WcfPowerChat.Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WcfPowerChat.Client"
+        xmlns:adonisControls="clr-namespace:AdonisUI.Controls;assembly=AdonisUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="600">
+
+    <DockPanel>
+
+        <Grid DockPanel.Dock="Top" Margin="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label VerticalContentAlignment="Center">Name</Label>
+            <TextBox Grid.Column="1" VerticalContentAlignment="Center">Fred</TextBox>
+            <Button Grid.Column="2">Login</Button>
+            <Button Grid.Column="3">Logout</Button>
+        </Grid>
+
+
+        <Grid DockPanel.Dock="Bottom" Margin="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label VerticalContentAlignment="Center">Text</Label>
+            <TextBox Grid.Column="1" VerticalContentAlignment="Center">Hallo</TextBox>
+            <Button Grid.Column="2">Senden</Button>
+            <Button Grid.Column="3">Bild...</Button>
+            <Button Grid.Column="4">Datei...</Button>
+        </Grid>
+
+        <ListBox Name="userLb" DockPanel.Dock="Right" Width="200"/>
+
+        <ListBox Name="chatLb"/>
+
+
+    </DockPanel>
+</adonisControls:AdonisWindow>

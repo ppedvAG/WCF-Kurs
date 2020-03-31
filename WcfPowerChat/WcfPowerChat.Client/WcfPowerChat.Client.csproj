@@ -9,6 +9,13 @@
   <ItemGroup>
     <PackageReference Include="AdonisUI" Version="1.14.0" />
     <PackageReference Include="AdonisUI.ClassicTheme" Version="1.14.0" />
+    <PackageReference Include="System.ServiceModel.Duplex" Version="4.7.0" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.7.0" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WcfPowerChat.Contracts\WcfPowerChat.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

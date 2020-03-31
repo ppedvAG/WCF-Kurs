@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.ServiceModel;
 
 namespace WcfPowerChat.Contracts
@@ -16,5 +17,7 @@ namespace WcfPowerChat.Contracts
         void ShowImage(Stream image);
         [OperationContract(IsOneWay = true)]
         void ShowFile(Stream file);
+        [OperationContract(IsOneWay = true)]
+        void ShowUsers(IEnumerable<string> users);
     }
 }

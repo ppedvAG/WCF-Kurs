@@ -18,9 +18,9 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Label VerticalContentAlignment="Center">Name</Label>
-            <TextBox Grid.Column="1" VerticalContentAlignment="Center">Fred</TextBox>
-            <Button Grid.Column="2">Login</Button>
-            <Button Grid.Column="3">Logout</Button>
+            <TextBox Name="nameTb" Grid.Column="1" VerticalContentAlignment="Center">Fred</TextBox>
+            <Button Name="loginBtn" Click="Login" Grid.Column="2">Login</Button>
+            <Button Name="logoutBtn" Click="Logout" Grid.Column="3">Logout</Button>
         </Grid>
 
 
@@ -34,13 +34,13 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Label VerticalContentAlignment="Center">Text</Label>
-            <TextBox Grid.Column="1" VerticalContentAlignment="Center">Hallo</TextBox>
-            <Button Grid.Column="2">Senden</Button>
-            <Button Grid.Column="3">Bild...</Button>
-            <Button Grid.Column="4">Datei...</Button>
+            <TextBox Name="chatTb" Grid.Column="1" VerticalContentAlignment="Center">Hallo</TextBox>
+            <Button Name="sendBtn" Click="SendText" Grid.Column="2">Senden</Button>
+            <Button Name="sendImageBtn" Grid.Column="3">Bild...</Button>
+            <Button Name="sendFileBtn" Grid.Column="4">Datei...</Button>
         </Grid>
 
-        <ListBox Name="userLb" DockPanel.Dock="Right" Width="200"/>
+        <ListBox BorderThickness="1" Name="userLb" DockPanel.Dock="Right" Width="200"/>
 
         <ListBox Name="chatLb"/>
 

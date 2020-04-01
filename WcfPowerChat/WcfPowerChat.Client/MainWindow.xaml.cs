@@ -1,7 +1,10 @@
 ﻿using AdonisUI;
 using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -92,13 +95,52 @@ namespace WcfPowerChat.Client
 
         private void Login(object sender, RoutedEventArgs e)
         {
-            var tcpBind = new NetTcpBinding();
-            tcpBind.MaxReceivedMessageSize = int.MaxValue;
+            try
+            {
+                // var tcpBind = new NetTcpBinding();
+                // tcpBind.MaxReceivedMessageSize = int.MaxValue;
+                // tcpBind.Security.Mode = SecurityMode.Transport;
+                //
+                //
+                // var cf = new DuplexChannelFactory<IServer>(new InstanceContext(this), tcpBind, new EndpointAddress("net.tcp://192.168.178.56:1"));
+                // cf.Credentials.Windows.ClientCredential.UserName = "Fred";
+                // cf.Credentials.Windows.ClientCredential.Password = "123456";
 
-            var cf = new DuplexChannelFactory<IServer>(new InstanceContext(this), tcpBind, new EndpointAddress("net.tcp://localhost:1"));
-            server = cf.CreateChannel();
 
-            server.Login(nameTb.Text);
+                 var tcpBind = new NetTcpBinding();
+                 tcpBind.MaxReceivedMessageSize = int.MaxValue;
+                 tcpBind.Security.Mode = SecurityMode.TransportWithMessageCredential;
+                tcpBind.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
+
+
+
+                var dual = new WSDualHttpBinding();
+                dual.Security.Mode = WSDualHttpSecurityMode.Message;
+                dual.Security.Message.ClientCredentialType = MessageCredentialType.Certificate;
+                dual.Security.Message.NegotiateServiceCredential = true;
+
+                //var cf = new DuplexChannelFactory<IServer>(new InstanceContext(this), dual, new EndpointAddress("http://192.168.178.56:2")); 
+
+
+                EndpointIdentity identity = EndpointIdentity.CreateDnsIdentity("RootCA");
+                EndpointAddress address = new EndpointAddress(new Uri("net.tcp://DESKTOP-MFV9PIV:3"), identity);
+
+                var cf = new DuplexChannelFactory<IServer>(new InstanceContext(this), tcpBind, address);
+                cf.Credentials.ClientCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.My, X509FindType.FindByThumbprint, "db56b195af62c2e65ae9243deac64eba8a34ed73");
+                cf.Credentials.Windows.ClientCredential.UserName = "Fred";
+                cf.Credentials.Windows.ClientCredential.Password = "123456";
+                cf.Credentials.ServiceCertificate.Authentication.CertificateValidationMode = System.ServiceModel.Security.X509CertificateValidationMode.None;
+
+
+                server = cf.CreateChannel();
+
+                server.Login(nameTb.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Fehler:{ex.Message}");
+                Debugger.Break();
+            }
         }
 
         IServer server = null;

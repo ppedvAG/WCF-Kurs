@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  hallo_grpc:
+    image: ${DOCKER_REGISTRY-}hallogrpc
+    build:
+      context: .
+      dockerfile: Hallo_gRPC/Dockerfile

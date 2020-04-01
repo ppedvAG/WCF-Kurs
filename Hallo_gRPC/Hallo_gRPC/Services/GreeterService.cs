@@ -21,7 +21,7 @@ namespace Hallo_gRPC
          
             return Task.FromResult(new HelloReply
             {
-                Message = "Hello " + request.Name + request.Zahlhttps://devblogs.microsoft.com/dotnet/system-io-pipelines-high-performance-io-in-net/
+                Message = "Hello " + request.Name + request.Zahl
             }) ;
         }
     }
